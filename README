@@ -1,0 +1,40 @@
+Ian Wilkes ianm.wilkes@gmail.com
+readme file for 600.320 assignment 1, OpenMP Filter
+
+To compile my code, simply use the Makefile, and type make.
+
+To run the filter code, the usage is below.
+
+./filter <minimum filter length> <maximum filter length> <data_len multiplier> <number of threads> [o]
+
+The first and second argument specify the minimum and maximum size of the filter
+to be used for the current execution.  Powers of two are recommended.
+
+The third argument is the data multiplier, which increases the size of the 
+data array as needed to determine scaleup. 
+
+The fourth argument is the number of threads to be used for this execution.
+This number is contractually expected to be a power of two.
+
+The final argument is optional, and causes the program to also run the
+optimized version of the filtering program. To do so, include o as the final
+argument. This option should only be used for filter sizes larger than 16,
+otherwise there will be undefined behavior.
+
+For the first part of the assignment, the code was run using 
+./filter 1 1024 4 1
+
+This was also done with differing number of threads to get the parallel speedup.
+For parallel scaleup, I used the following command, with varing values instead
+of N.
+./filter 512 512 N N 
+
+Finally, to test my optimized version, I ran the following:
+./filter 512 512 1 4 o
+
+
+
+All of the data output by the filter program is in csv format, which can be
+piped into an excel or csv file to be analyzed.  The first value is the 
+algorithm type, the second is the number of seconds required, the third is
+miliseconds, and the fourth is the filter size used. 
